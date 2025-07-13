@@ -4,9 +4,11 @@ const cors = require('cors')
 const app = express()
 const socket = require('socket.io')
 const globalSocket = require('./socket-config')
+const roomSocket = require('./Socket-Types/Rooms')
 
 app.use(cors())
 const server = http.createServer(app)
+
 
 
 const io = socket(server, {
@@ -16,7 +18,7 @@ const io = socket(server, {
     }
 })
 globalSocket(io)
-
+roomSocket(io)
 
 const PORT = 5050
 server.listen(PORT, (e)=>{
